@@ -31,4 +31,3 @@ int	main (void)
 		printf("%c is not found\n", character);
 	return (0);
 }
-
