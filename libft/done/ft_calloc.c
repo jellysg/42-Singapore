@@ -1,32 +1,34 @@
-#include "libft.h"
-
-void	*ft_calloc(size_t count, size_t size)
+int	ft_atoi(const char *str)
 {
-	void	*result;
+	int	i;
+	unsigned int	result;
+	int	negative;
 
-	result = malloc(count * size);
-	if (result == NULL)
-		return (NULL);
-	ft_bzero(result, count * size);
-	return (result);
+	i = 0;
+	result = 0;
+	negative = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			negative = -1;
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	return ((int)(result * negative));
 }
 
 #include <stdio.h>
 
 int	main (void)
 {
-	size_t count = 5;
-	size_t size = sizeof(int);
-	int *array = ft_calloc(count, size);
-
-	if (array != NULL)
-	{
-		printf("Memory allocation successful.\n");
-		for (size_t i = 0; i < count; i++)
-			printf("array[%zu] : %d | %p\n", i, array[i], &array[i]);
-		free(array);
-	}
-	else
-		printf("Memory allocation failed.\n");
-	return (0);
+	const char *str = "12345";
+	int result = ft_atoi(str);
+	printf("Result: %d\n", result);
+	return 0;
 }
