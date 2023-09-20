@@ -24,20 +24,3 @@ char	*ft_strnstr(const char *string, const char *find, size_t n)
 	}
 	return (NULL);
 }
-
-#include <stdio.h>
-
-int	main (void)
-{
-	const char *haystack = "This is a sample string";
-	const char *needle = "sample";
-	size_t n = 20;
-
-	char *result = ft_strnstr(haystack, needle, n);
-
-	if (result != NULL)
-		printf("Found \"%s\" in \"%s\"\n", needle, haystack);
-	else
-		printf("Substring not found\n");
-	return (0);
-}

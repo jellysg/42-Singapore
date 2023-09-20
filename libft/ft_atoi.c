@@ -1,8 +1,8 @@
 int	ft_atoi(const char *str)
 {
-	int	i;
+	int				i;
 	unsigned int	result;
-	int	negative;
+	int				negative;
 
 	i = 0;
 	result = 0;
@@ -21,14 +21,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return ((int)(result * negative));
-}
-
-#include <stdio.h>
-
-int	main (void)
-{
-	const char *str = "12345";
-	int result = ft_atoi(str);
-	printf("Result: %d\n", result);
-	return 0;
 }

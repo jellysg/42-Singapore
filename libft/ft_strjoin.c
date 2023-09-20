@@ -26,13 +26,17 @@ static char	*ft_strcat(char const *s1, char const *s2, char *res)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*res;
+	char	*result;
+	int		len1;
+	int		len2;
 
 	if (!s1 || !s2)
 		return (NULL);
-	res = malloc((ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1) * sizeof(char));
-	if (res == NULL)
+	len1 = ft_strlen((char *)s1);
+	len2 = ft_strlen((char *)s2);
+	result = malloc((len1 + len2 + 1) * sizeof(char));
+	if (result == NULL)
 		return (NULL);
-	res = ft_strcat(s1, s2, res);
-	return (res);
+	result = ft_strcat(s1, s2, result);
+	return (result);
 }
