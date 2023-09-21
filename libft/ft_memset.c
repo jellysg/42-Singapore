@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergoh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/11 11:38:56 by jergoh            #+#    #+#             */
+/*   Updated: 2023/09/11 11:38:57 by jergoh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string.h>
 
 void	*ft_memset(void *str, int c, size_t n)
 {
 	unsigned char	*s;
-	size_t			i;
-
 	s = (unsigned char *)str;
+	size_t	i;
+
 	i = 0;
 	while (i < n)
 	{
@@ -13,4 +25,19 @@ void	*ft_memset(void *str, int c, size_t n)
 		i++;
 	}
 	return (s);
+}
+
+#include <stdio.h>
+
+int	main (void)
+{
+	char	string[20] = "This is a test string";
+	int	c = 'A';
+	size_t	n = 6;
+
+	printf("Original String: %s\n", string);
+
+	memset(string, c, n);
+	
+	printf("After memset with size_t %zu of %d:\n%s\n", n, c, string);
 }
