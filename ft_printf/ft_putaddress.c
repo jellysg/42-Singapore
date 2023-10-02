@@ -14,7 +14,7 @@ static size_t	print_addr(const unsigned long n)
 size_t	ft_putaddress(void *addr)
 {
 	if (!addr)
-		return (ft_putstr("(null)"));
+		return (ft_putstr("(nil)"));
 	ft_putstr("0x");
 	return (2 + print_addr((unsigned long) addr));
 }
