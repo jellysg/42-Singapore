@@ -1,5 +1,5 @@
-libft (bonus)
+#libft (bonus)
 - 125/100
 
-ft_printf
+#ft_printf
 - 100/100 (pending eval)
