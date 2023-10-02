@@ -1,5 +1,3 @@
-## libft
-125/100
+libft - 125/100
 
-## ft_printf
-pending
+ft_printf - ?/100 (pending)
