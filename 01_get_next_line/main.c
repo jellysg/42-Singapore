@@ -15,9 +15,13 @@ int	main(void)
 	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("Line %d:\n%s\n", ++i, line);
+		printf(" (Line %d) %s", ++i, line);
 		free(line);
 	}
+	printf("\n===================================================\n");
+	printf("\n|                  Test Complete                  |\n");
+	printf("\n===================================================\n");
+	printf("\n             Scroll up to check results            \n\n\n");
 	close(fd);
 	return (0);
 }
