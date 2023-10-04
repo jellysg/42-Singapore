@@ -12,7 +12,6 @@ int	main(void)
 		perror("Error opening file");
 		return (1);
 	}
-	printf("BUFFER_SIZE = %d\n", BUFFER_SIZE);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf(" (Line %d) %s", ++i, line);
@@ -21,6 +20,7 @@ int	main(void)
 	printf("\n===================================================\n");
 	printf("\n|                  Test Complete                  |\n");
 	printf("\n===================================================\n");
+	printf("\n            Tested on: BUFFER_SIZE = %d\n          \n", BUFFER_SIZE);
 	printf("\n             Scroll up to check results            \n\n\n");
 	close(fd);
 	return (0);
