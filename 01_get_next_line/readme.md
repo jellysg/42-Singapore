@@ -6,7 +6,17 @@ Feel free to test it out using my main.c and test.txt
 
 
 ## BUFFER_SIZE Check (Optional)
-#### Replace 'prepare_list_from_file' function in get_next_line.c with the following:
+#### Modify 'prepare_list_from_file' function in get_next_line.c with the following:
+
+Below: append_buffer_to_list(list, buffer, num_bytes);
+```
+		static int i = 0;
+		printf("\nCurrent Buffer iteration: %d|", ++i);
+		usleep(10000);
+```
+
+It should look something like this:
+
 ```
 void	prepare_list_from_file(int fd, t_list **list)
 {
