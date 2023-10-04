@@ -8,7 +8,7 @@ Feel free to test it out using my main.c and test.txt
 ## BUFFER_SIZE Check (Optional)
 #### Modify 'prepare_list_from_file' function in get_next_line.c with the following:
 
-Below: append_buffer_to_list(list, buffer, num_bytes);
+After completing a buffer iteration, add these lines to check:
 ```
 		static int i = 0;
 		printf("\nCurrent Buffer iteration: %d|", ++i);
