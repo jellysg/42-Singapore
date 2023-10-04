@@ -2,7 +2,8 @@ This assignment was particularly tricky, hence the need for main.c even with ass
 
 Feel free to test it out using my main.c and test.txt
 
-1. Replace 'prepare_list_from_file' function in get_next_line.c with the following:
+##### BUFFER_SIZE Check (Optional)
+Replace 'prepare_list_from_file' function in get_next_line.c with the following:
 ```
 void	prepare_list_from_file(int fd, t_list **list)
 {
@@ -34,7 +35,8 @@ void	prepare_list_from_file(int fd, t_list **list)
 }
 ```
 
-2. Compile with:
+##### Compile with the following to test, this main.c works with any GNL file
+Do note that this is a very simple test, refer to Tripouille or fsoares for optimized tests
 ```
 cc -Wall -Wextra -Werror *e.c *ls.c main.c
 ```
