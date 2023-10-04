@@ -22,4 +22,4 @@ hello test sentence here xd line 21         ;
 
 Check for Line 23
 
-The last buffer iteration should appear only once more after this line....
+<- This should be the final buffer iteration (extra 1 iter below due to only starting check after first iteration completes)
