@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	prepare_list_from_file(int fd, t_list **list)
 {
@@ -111,21 +111,21 @@ t_list	*remove_last_element(t_list **lst)
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list = NULL;
+	static t_list	*list[4096];
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 4095)
 		return (NULL);
 	line = NULL;
-	prepare_list_from_file(fd, &list);
-	if (list == NULL)
+	prepare_list_from_file(fd, &list[fd]);
+	if (list[fd] == NULL)
 		return (NULL);
-	read_line_from_list(list, &line);
-	remove_last_element(&list);
+	read_line_from_list(list[fd], &line);
+	remove_last_element(&list[fd]);
 	if (line[0] == '\0')
 	{
-		free_list(list);
-		list = NULL;
+		free_list(list[fd]);
+		list[fd] = NULL;
 		free(line);
 		return (NULL);
 	}
