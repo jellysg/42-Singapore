@@ -14,7 +14,7 @@ int	main(void)
 	}
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf(" (Line %d) %s", ++i, line);
+		printf(" (Line %d) %s\n", ++i, line);
 		free(line);
 	}
 	printf("\n===================================================\n");
