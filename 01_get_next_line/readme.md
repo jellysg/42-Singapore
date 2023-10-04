@@ -52,7 +52,9 @@ void	prepare_list_from_file(int fd, t_list **list)
 cc -Wall -Wextra -Werror *e.c *ls.c main.c
 ```
 
-3. Run the test case
+## Run the test case
 ```
 ./a.out
 ```
+
+## You can change the BUFFER_SIZE in get_next_line.h to check other sizes
