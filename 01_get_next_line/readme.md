@@ -1,8 +1,8 @@
-this assignment was particularly tricky, hence the need for main.c even with assistance from paco
+This assignment was particularly tricky, hence the need for main.c even with assistance from paco
 
-feel free to test it out using my main.c and test.txt
+Feel free to test it out using my main.c and test.txt
 
-### 1. Replace 'prepare_list_from_file' function with the following
+1. Replace 'prepare_list_from_file' function in get_next_line.c with the following:
 ```
 void	prepare_list_from_file(int fd, t_list **list)
 {
@@ -34,12 +34,12 @@ void	prepare_list_from_file(int fd, t_list **list)
 }
 ```
 
-### 2. Compile with
+2. Compile with:
 ```
 cc -Wall -Wextra -Werror *e.c *ls.c main.c
 ```
 
-### 3. Run the test case
+3. Run the test case
 ```
 ./a.out
 ```
