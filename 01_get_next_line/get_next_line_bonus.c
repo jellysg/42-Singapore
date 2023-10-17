@@ -61,7 +61,7 @@ void	read_line_from_list(t_list *list, char **line)
 
 	if (list == NULL)
 		return ;
-	generate_line(line, list);
+	prepare_line(line, list);
 	if (*line == NULL)
 		return ;
 	j = 0;
@@ -101,7 +101,7 @@ t_list	*remove_last_element(t_list **lst)
 		i++;
 	if (last->content[i] == '\n')
 		i++;
-	clean_node->content = remove_last_element_helper(last, i);
+	clean_node->content = remove_last_element_extra(last, i);
 	if (clean_node->content == NULL)
 		return (NULL);
 	free_list(*lst);
@@ -114,7 +114,7 @@ char	*get_next_line(int fd)
 	static t_list	*list[4096];
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 4095)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= 4096)
 		return (NULL);
 	line = NULL;
 	prepare_list_from_file(fd, &list[fd]);

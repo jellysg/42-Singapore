@@ -9,23 +9,23 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-char	*remove_last_element_helper(t_list *last, int i)
+char	*remove_last_element_extra(t_list *last, int i)
 {
 	int		j;
 	int		len;
-	char	*trimmed_content;
+	char	*trimmed;
 
 	len = 0;
 	while (last->content[len])
 		len++;
-	trimmed_content = malloc(sizeof(char) * (len - i + 1));
-	if (trimmed_content == NULL)
+	trimmed = malloc(sizeof(char) * (len - i + 1));
+	if (trimmed == NULL)
 		return (NULL);
 	j = 0;
 	while (last->content[i])
-		trimmed_content[j++] = last->content[i++];
-	trimmed_content[j] = '\0';
-	return (trimmed_content);
+		trimmed[j++] = last->content[i++];
+	trimmed[j] = '\0';
+	return (trimmed);
 }
 
 bool	found_newline(t_list *list)
@@ -48,7 +48,7 @@ bool	found_newline(t_list *list)
 	return (false);
 }
 
-void	generate_line(char **line, t_list *list)
+void	prepare_line(char **line, t_list *list)
 {
 	int	i;
 	int	len;
