@@ -25,7 +25,7 @@ static size_t	checkformat(const char *c, size_t *i, va_list *argptr)
 	else if (format && (format + 1))
 		return (ft_putchar(*(c)) + ft_putchar(format));
 	else
-		*i -= 1;
+		*i = *i - 1;
 	return (-1);
 }
 
