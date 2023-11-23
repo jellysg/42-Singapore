@@ -1,6 +1,6 @@
 # 42 Singapore - Common Core
 ### Level 00
-- [**libft**](https://github.com/jellytusmaximus/core/tree/main/00_libft) <code style="color : green">(125/100)</code> $${\color{green}Green}$$
+- [**libft**](https://github.com/jellytusmaximus/core/tree/main/00_libft) (125/100)
 
 ### Level 01
 - [**ft_printf (100/100)**](https://github.com/jellytusmaximus/core/tree/main/01_ft_printf)
