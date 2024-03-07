@@ -13,6 +13,8 @@ typedef struct s_map {
 	int e_count;
 	int p_count;
 	int c_count;
+	int	e_found;
+	int	c_found;
 	int current_line;
 	int current_col;
 	int	len;
@@ -22,6 +24,20 @@ typedef struct s_map {
 	char	**map;
 	char	**map_buffer;
 } t_map;
+
+typedef struct s_input {
+    int key_up;
+    int key_down;
+    int key_left;
+    int key_right;
+} t_input;
+
+typedef struct s_player {
+    int x;
+    int y;
+    int direction;
+	int	score;
+} t_player;
 
 typedef struct s_data
 {

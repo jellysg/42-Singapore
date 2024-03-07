@@ -1,8 +1,16 @@
 #include "../../includes/so_long.h"
 
-void    free_elements(t_map *c)
+void free_elements(t_map *c)
 {
-    free(c->map_buffer);
+	int	i;
+
+	i = 0;
+    while (i < c->current_line)
+    {
+        free(c->map[i]);
+		i++;
+    }
+    free(c->map);
     free(c->line);
     free(c->prev_line);
 }
@@ -14,6 +22,8 @@ void    mem_dup(t_map *c)
     count = 0;
 	if (c->current_line != 0)
 		c->map[c->current_line - 1] = ft_strdup(c->prev_line);
+	if (!c->map_buffer)
+		return;
 	while (count < c->current_line)
 	{
 		c->map_buffer[count] = ft_strdup(c->map[count]);
@@ -21,14 +31,20 @@ void    mem_dup(t_map *c)
 	}
 }
 
-void	mem_alloc(t_map *c)
+void mem_alloc(t_map *c)
 {
-    size_t	mem_size;
+	int i;
 
-    mem_size = (c->len * c->current_line) * sizeof(char);
-	c->map_buffer = (char **)malloc(mem_size);
+	i = 0;
+	c->map_buffer = (char **)malloc((c->current_line + 1) * sizeof(char *));
     mem_dup(c);
-	c->map = (char **)malloc(mem_size + (c->len * sizeof(char)));
-	c->map = c->map_buffer;
-	c->map[c->current_line] = ft_strdup(c->line);
+    c->map = (char **)malloc((c->current_line + 1) * sizeof(char *));
+    while (i < c->current_line)
+    {
+        c->map[i] = ft_strdup(c->map_buffer[i]);
+		i++;
+    }
+    c->map[c->current_line] = ft_strdup(c->line);
+    c->map_buffer[c->current_line] = ft_strdup(c->line);
 }
+
