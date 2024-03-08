@@ -90,13 +90,18 @@ static void	init_vars(t_map *var)
 	var->current_col = 0;
 	var->len = 0;
 	var->fd = 0;
+	var->start_row = -1;
+	var->start_col = -1;
 }
 
 bool is_valid_path(t_map *c, int row, int col)
 {
+	int	i;
+
+	i = 0;
     if (row < 0 || row >= c->current_line || col < 0 || col >= c->len || 
 	c->map_buffer[row][col] == '1' || c->map_buffer[row][col] == '-')
-        return false;
+        return (false);
     char original = c->map[row][col];
     if (original == 'E')
         c->e_found++;
@@ -105,9 +110,6 @@ bool is_valid_path(t_map *c, int row, int col)
     c->map_buffer[row][col] = '-';
 	system("clear");
 	ft_printf("\nPathing to exit and all collectibles...\n");
-	int i;
-
-	i = 0;
     while (i < c->current_line)
 	{
 		ft_printf("%s\n", c->map_buffer[i]);
@@ -121,39 +123,53 @@ bool is_valid_path(t_map *c, int row, int col)
                   is_valid_path(c, row, col - 1) ||
                   is_valid_path(c, row, col + 1);
 	if (c->e_found == c->e_count && c->c_found == c->c_count)
-		return true;
-    return result;
+		return (true);
+    return (result);
+}
+
+int	init_player_pos(t_map *c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+    while (i < c->current_line)
+    {
+		j = 0;
+        while (j < c->len)
+        {
+            if (c->map[i][j] == 'P')
+            {
+                c->start_row = i;
+                c->start_col = j;
+                return (1);
+            }
+			j++;
+        }
+        if (c->start_row != -1)
+            break;
+		i++;
+    }
+    if (c->start_row == -1)
+	{
+        return (0);
+	}
+	return (1);
 }
 
 int check_valid_path(t_map *c, int fd)
 {
 	if (fd == -1)
-		return -1;
-    int start_row = -1, start_col = -1;
-    for (int i = 0; i < c->current_line; i++)
-    {
-        for (int j = 0; j < c->len; j++)
-        {
-            if (c->map[i][j] == 'P')
-            {
-                start_row = i;
-                start_col = j;
-                break;
-            }
-        }
-        if (start_row != -1)
-            break;
-    }
-    if (start_row == -1)
-        return -1;
-
-    if (!is_valid_path(c, start_row, start_col))
-    {
-        ft_printf("\n\033[1;31mInvalid Path\033[0m\n\n");
-        return -1;
-    }
+		return (-1);
+	if (!init_player_pos(c))
+		return (0);
+	if (!is_valid_path(c, c->start_row, c->start_col))
+	{
+		ft_printf("\n\033[1;31mInvalid Path\033[0m\n\n");
+		return (-1);
+	}
     ft_printf("\n\033[1;32mValid Path\033[0m\n\n");
-    return 0;
+	return (0);
 }
 
 int	main(int argc, char *argv[])

@@ -15,6 +15,8 @@ typedef struct s_map {
 	int c_count;
 	int	e_found;
 	int	c_found;
+	int	start_row;
+	int	start_col;
 	int current_line;
 	int current_col;
 	int	len;
