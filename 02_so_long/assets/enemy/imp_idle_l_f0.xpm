@@ -1,0 +1,28 @@
+/* XPM */
+static char *imp_idle_anim_f01709893408[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c None",
+". c #222222",
+"X c #62232F",
+"o c #5F2D56",
+"O c #DA4E38",
+"+ c #FDF7ED",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"  ..   ..       ",
+"  .o.  .o.      ",
+"  .o....o...    ",
+"  .o.OO.o.O.    ",
+"   .OOOOOOO.    ",
+"   .+OO++OO.    ",
+"   .+OO++OO.    ",
+"   .XOOXXOO.    ",
+"   .OOOOOOO.    ",
+"   .oo...oo.    ",
+"   .o.. .o..    ",
+"   ...  ...     "
+};

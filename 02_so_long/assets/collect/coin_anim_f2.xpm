@@ -1,0 +1,16 @@
+/* XPM */
+static char *coin_anim_f21709889551[] = {
+/* columns rows colors chars-per-pixel */
+"6 7 3 1 ",
+"  c None",
+". c #EE8E2E",
+"X c #FACB3E",
+/* pixels */
+"  X.  ",
+"  X.  ",
+"  X.  ",
+"  X.  ",
+"  X.  ",
+"  X.  ",
+"  X.  "
+};
