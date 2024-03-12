@@ -1,4 +1,3 @@
-#include "../../libft/includes/libft.h"
 #include "../includes/so_long.h"
 
 void	invalid_format(t_map *c)
@@ -60,8 +59,8 @@ int	init_player_pos(t_map *c, t_player *p, int row, int col)
         {
             if (c->map[row][col] == 'P')
             {
-                p->x = row;
-                p->y = col;
+                p->y = row;
+                p->x = col;
                 c->start_row = row;
                 c->start_col = col;
                 return (1);

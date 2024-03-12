@@ -1,27 +1,27 @@
 #include "../../includes/so_long.h"
 
-int on_destroy(t_data *data)
+int game_destroy(t_data *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free_elements(data);
 	exit(0);
 	return (0);
 }
 
-void free_elements(t_map *c)
+void free_elements(t_data *data)
 {
 	int	i;
 
 	i = 0;
-    while (i < c->current_line)
+    while (i < data->map->current_line)
     {
-        free(c->map[i]);
+        free(data->map->map[i]);
 		i++;
     }
-    free(c->map);
-    free(c->line);
-    free(c->prev_line);
+    free(data->map->map);
+	free(data->texture->px_size);
 }
 
 void    mem_dup(t_map *c)

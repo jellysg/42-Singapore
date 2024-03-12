@@ -1,7 +1,7 @@
 OBJS_SL = $(SRCS_SL:.c=.o)
 SRCS_SL = $(addprefix $(SRC_DIR)/, \
-	core/so_long.c core/create_map.c \
-	utils/mem.c utils/open_map.c utils/validate_path.c utils/utils.c \
+	core/so_long.c core/map.c \
+	utils/mem.c utils/open_ber.c utils/validate_path.c utils/utils.c \
 )
 
 SRC_DIR	= ./sources

@@ -1,10 +1,36 @@
 #include "../../includes/so_long.h"
 
+int i;
+
+int refresh(t_data *data)
+{
+	draw_map(data, data->map, data->texture);
+	system("clear");
+	ft_printf("Frame: %i", i);
+	i++;
+	usleep(1000000 / FRAME_RATE);
+    return (0);
+}
+
+int so_long_loop(t_data *data)
+{
+    while (1)
+    {
+        mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, data);
+        mlx_hook(data->win_ptr, DestroyNotify, StructureNotifyMask, &game_destroy, data);
+        mlx_loop_hook(data->mlx_ptr, &refresh, data);
+        mlx_loop(data->mlx_ptr);
+    }
+    return (0);
+}
+
 int	main(int argc, char **argv)
 {
-	t_data data;
+	i = 0;
+	t_data	data;
 	init_struct_pointers(&data);
 	create_map(&data, data.map, data.player, argc, argv);
+	free_elements(&data);
 	return (0);
 }
 
