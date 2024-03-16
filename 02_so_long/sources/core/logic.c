@@ -5,7 +5,6 @@ void    check_collect(t_data *data)
     if (data->map->map[data->player->y][data->player->x] == 'C')
     {
         data->player->score++;
-        ft_printf("%i/%i found\n", data->player->score, data->map->c_count);
     }
     return;
 }
@@ -18,7 +17,6 @@ void    check_up(t_data *data)
     {
         if (data->player->win == 1)
         {
-            ft_printf("Moves: %i\n", data->player->moves++);
             ft_printf("You won!\n");
             game_destroy(data);
         }
@@ -27,7 +25,7 @@ void    check_up(t_data *data)
     else
     {
         data->player->y--;
-        ft_printf("Moves: %i\n", data->player->moves++);
+        data->player->moves++;
         check_collect(data);
     }
     return;
@@ -41,7 +39,6 @@ void    check_down(t_data *data)
     {
         if (data->player->win == 1)
         {
-            ft_printf("Moves: %i\n", data->player->moves++);
             ft_printf("You won!\n");
             game_destroy(data);
         }
@@ -50,7 +47,7 @@ void    check_down(t_data *data)
     else
     {
         data->player->y++;
-        ft_printf("Moves: %i\n", data->player->moves++);
+        data->player->moves++;
         check_collect(data);
     }
     return;
@@ -65,7 +62,6 @@ void    check_left(t_data *data)
     {
         if (data->player->win == 1)
         {
-            ft_printf("Moves: %i\n", data->player->moves++);
             ft_printf("You won!\n");
             game_destroy(data);
         }
@@ -74,7 +70,7 @@ void    check_left(t_data *data)
     else
     {
         data->player->x--;
-        ft_printf("Moves: %i\n", data->player->moves++);
+        data->player->moves++;
         check_collect(data);
     }
     return;
@@ -89,7 +85,6 @@ void    check_right(t_data *data)
     {
         if (data->player->win == 1)
         {
-            ft_printf("Moves: %i\n", data->player->moves++);
             ft_printf("You won!\n");
             game_destroy(data);
         }
@@ -98,7 +93,7 @@ void    check_right(t_data *data)
     else
     {
         data->player->x++;
-        ft_printf("Moves: %i\n", data->player->moves++);
+        data->player->moves++;
         check_collect(data);
     }
     return;

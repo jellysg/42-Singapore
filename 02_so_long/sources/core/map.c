@@ -1,28 +1,5 @@
 #include "../../includes/so_long.h"
 
-static void	init_vars(t_data *init)
-{
-	init->map->e_count = 0;
-	init->map->p_count = 0;
-	init->map->c_count = 0;
-	init->map->e_found = 0;
-	init->map->c_found = 0;
-	init->map->current_line = 0;
-	init->map->current_col = 0;
-	init->map->len = 0;
-	init->map->fd = 0;
-	init->map->row = 0;
-	init->map->col = 0;
-	init->map->start_row = -1;
-	init->map->start_col = -1;
-	init->player->x = 0;
-	init->player->y = 0;
-	init->player->moves = 1;
-	init->player->score = 0;
-	init->player->win = 0;
-	init->player->facing = 'L';
-}
-
 void	draw_map(t_data *data, t_map *c, t_texture *t)
 {
 	c->row = 0;
@@ -76,8 +53,6 @@ void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv)
 	init_vars(data);
 	if (open_ber(c, argv[1], argc, argv) != -1 && validate_path(c, p, c->fd) == true)
 	{
-		ft_printf("%c located at: ", c->map[p->y][p->x]);
-		ft_printf("%i, %i\n", p->y, p->x);
 		map_window(data, c, data->texture);
 		game_loop(data);
 		free(c->line);

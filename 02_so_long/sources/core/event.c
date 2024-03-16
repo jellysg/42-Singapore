@@ -5,7 +5,6 @@ int refresh(t_data *data)
 	if (data->player->score == data->map->c_count)
     {
         data->player->win = 1;
-        ft_printf("Door is open\n");
     }
 	draw_map(data, data->map, data->texture);
     data->texture->keyframe = (data->texture->keyframe + 1) % 4;

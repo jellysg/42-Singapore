@@ -114,13 +114,17 @@ void    check_left(t_data *data);
 void    check_right(t_data *data);
 
 // map.c
-// static void	init_vars(t_data *init);
 void	draw_map(t_data *data, t_map *c, t_texture *t);
 void	map_window(t_data *data, t_map *c, t_texture *t);
 void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv);
 
 
 // Utils functions
+// init.c
+void	init_vars(t_data *init);
+void	init_struct_pointers(t_data *data);
+int	init_player_pos(t_map *c, t_player *p, int row, int col);
+
 // mem.c
 int game_destroy(t_data *data);
 void	mem_alloc(t_map *c);
@@ -136,11 +140,9 @@ int	open_ber(t_map *c, char *map_name, int ac, char **av);
 // validate_path.c
 void	invalid_format(t_map *c);
 bool is_valid_path(t_map *c, int row, int col);
-int	init_player_pos(t_map *c, t_player *p, int row, int col);
 bool validate_path(t_map *c, t_player *p, int fd);
 
 // utils.c
-void	init_struct_pointers(t_data *data);
 int on_keypress(int keysym, t_data *data);
 void    *xpm_i(t_data *d, char *path, t_texture *t);
 void	render_xpm(t_data *data, t_texture *t);

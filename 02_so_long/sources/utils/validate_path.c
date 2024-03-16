@@ -20,9 +20,6 @@ void	invalid_format(t_map *c)
 
 bool is_valid_path(t_map *c, int row, int col)
 {
-	// int	i;
-
-	// i = 0;
     if (row < 0 || row >= c->current_line || col < 0 || col >= c->len || 
 	c->map_buffer[row][col] == '1' || c->map_buffer[row][col] == '-' || 
     c->map_buffer[row][col] == 'N')
@@ -32,15 +29,6 @@ bool is_valid_path(t_map *c, int row, int col)
     else if (c->map[row][col] == 'C')
         c->c_found++;
     c->map_buffer[row][col] = '-';
-	// system("clear");
-	// ft_printf("\nExits found : %i/%i\n", c->e_found, c->e_count);
-	// ft_printf("Collectibles found : %i/%i\n", c->c_found, c->c_count);
-    // while (i < c->current_line)
-	// {
-	// 	ft_printf("%s\n", c->map_buffer[i]);
-	// 	i++;
-	// }
-    // usleep(5000);
     bool result = is_valid_path(c, row - 1, col) ||
                   is_valid_path(c, row + 1, col) ||
                   is_valid_path(c, row, col - 1) ||
@@ -48,34 +36,6 @@ bool is_valid_path(t_map *c, int row, int col)
 	if (c->e_found == c->e_count && c->c_found == c->c_count)
 		return (true);
     return (result);
-}
-
-int	init_player_pos(t_map *c, t_player *p, int row, int col)
-{
-    while (row < c->current_line)
-    {
-		col = 0;
-        while (col < c->len)
-        {
-            if (c->map[row][col] == 'P')
-            {
-                p->y = row;
-                p->x = col;
-                c->start_row = row;
-                c->start_col = col;
-                return (1);
-            }
-			col++;
-        }
-        if (c->start_row != -1)
-            break;
-		row++;
-    }
-    if (c->start_row == -1)
-	{
-        return (0);
-	}
-	return (1);
 }
 
 bool validate_path(t_map *c, t_player *p, int fd)

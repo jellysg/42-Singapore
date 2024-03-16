@@ -1,24 +1,7 @@
 #include "../../includes/so_long.h"
 
-void	init_struct_pointers(t_data *data)
-{
-    t_map   *m;
-    t_player    *p;
-    t_texture   *t;
-
-    m = malloc(sizeof(t_map));
-    p = malloc(sizeof(t_player));
-    t = malloc(sizeof(t_texture));
-
-	data->map = m;
-    data->player = p;
-    data->texture = t;
-	return;
-}
-
 int on_keypress(int keysym, t_data *data)
 {
-    printf("Pressed key: %d\n", keysym);
     key_event(keysym, data);
 	return (0);
 }
