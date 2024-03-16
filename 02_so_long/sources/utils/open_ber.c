@@ -20,8 +20,10 @@ int	walls_and_components(t_map *c)
 				c->p_count++;
 			if (c->check == 'C')
 				c->c_count++;
+			if (c->check == 'M')
+				c->m_count++;
 			if (c->check != 'E' && c->check != 'P' && c->check != 'C' && 
-			c->check != '1' && c->check != '0')
+			c->check != '1' && c->check != '0' && c->check != 'M')
 			{
 				c->fd = -2;
 				return (-1);

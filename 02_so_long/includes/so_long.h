@@ -32,6 +32,7 @@ typedef struct s_map
 	int	e_count;
 	int p_count;
 	int c_count;
+	int	m_count;
 	int	e_found;
 	int	c_found;
 	int	row;
@@ -51,6 +52,15 @@ typedef struct s_map
 	char	check;
 } t_map;
 
+typedef struct s_monster
+{
+	int num;
+	int	*x;
+	int	*y;
+	int	idle_time;
+	char	facing;
+} t_monster;
+
 typedef struct s_player
 {
     int x;
@@ -65,6 +75,8 @@ typedef	struct s_texture
 {
 	void	*playerL[4];
 	void	*playerR[4];
+	void	*monsterL[4];
+	void	*monsterR[4];
 	void	*collect[4];
 	void	*exit[2];
 	void	*wall;
@@ -81,6 +93,7 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_player	*player;
+	t_monster	*monster;
 	t_texture	*texture;
 	t_map	*map;
 }	t_data;
@@ -97,6 +110,7 @@ long long	timestamp(void);
 int game_loop(t_data *data);
 
 // event.c
+int on_keypress(int keysym, t_data *data);
 void    key_event(int keysym, t_data *data);
 int	refresh(t_data *data);
 
@@ -107,11 +121,14 @@ void    move_left(t_data *data);
 void    move_right(t_data *data);
 
 // logic.c
-void    check_collect(t_data *data);
+void    check_unique(t_data *data);
 void    check_up(t_data *data);
 void	check_down(t_data *data);
 void    check_left(t_data *data);
 void    check_right(t_data *data);
+
+// monster_logic.c
+void    monster_logic(t_data *data, t_monster *mon);
 
 // map.c
 void	draw_map(t_data *data, t_map *c, t_texture *t);
@@ -121,6 +138,7 @@ void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv);
 
 // Utils functions
 // init.c
+void	init_map(t_data *init);
 void	init_vars(t_data *init);
 void	init_struct_pointers(t_data *data);
 int	init_player_pos(t_map *c, t_player *p, int row, int col);
@@ -142,9 +160,9 @@ void	invalid_format(t_map *c);
 bool is_valid_path(t_map *c, int row, int col);
 bool validate_path(t_map *c, t_player *p, int fd);
 
-// utils.c
-int on_keypress(int keysym, t_data *data);
+// render.c
 void    *xpm_i(t_data *d, char *path, t_texture *t);
+void	render_characters(t_data *data, t_texture *t);
 void	render_xpm(t_data *data, t_texture *t);
 void    render_image(t_data *d, void *img_ptr, t_map *c);
 

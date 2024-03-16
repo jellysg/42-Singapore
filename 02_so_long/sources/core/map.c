@@ -1,5 +1,45 @@
 #include "../../includes/so_long.h"
 
+void	draw_moves(t_data *d, t_map *c)
+{
+	char	*msg;
+	char	*moves;
+
+	moves = ft_itoa(d->player->moves);
+	msg = ft_strjoin("Moves: ", moves);
+	mlx_string_put(d->mlx_ptr, d->win_ptr, c->width / 2,
+	 c->height - c->current_line, 11001101, msg);
+	free(msg);
+	free(moves);
+}
+
+void	draw_objects(t_data *data, t_map *c, t_texture *t)
+{
+	if (c->map[c->row][c->col] == '1')
+		render_image(data, t->wall, c);
+	else if (c->map[c->row][c->col] == '0')
+		render_image(data, t->floor, c);
+	else if (c->map[c->row][c->col] == 'E')
+		render_image(data, t->exit[data->player->win], c);
+	else if (c->map[c->row][c->col] == 'C')
+		render_image(data, t->collect[t->frame], c);
+	else if (c->map[c->row][c->col] == 'P')
+	{
+		if (data->player->facing == 'L')
+			render_image(data, t->playerL[t->frame], c);
+		else if (data->player->facing == 'R')
+			render_image(data, t->playerR[t->frame], c);
+	}
+	else if (c->map[c->row][c->col] == 'M')
+	{
+		if (data->monster->facing == 'L')
+			render_image(data, t->monsterL[t->frame], c);
+		else if (data->monster->facing == 'R')
+			render_image(data, t->monsterR[t->frame], c);
+		c->m_count++;
+	}
+}
+
 void	draw_map(t_data *data, t_map *c, t_texture *t)
 {
 	c->row = 0;
@@ -8,32 +48,12 @@ void	draw_map(t_data *data, t_map *c, t_texture *t)
         c->col = 0;
         while (c->col < c->len)
         {
-            if (c->map[c->row][c->col] == '1')
-                render_image(data, t->wall, c);
-			else if (c->map[c->row][c->col] == '0')
-                render_image(data, t->floor, c);
-			else if (c->map[c->row][c->col] == 'E')
-				render_image(data, t->exit[data->player->win], c);
-			else if (c->map[c->row][c->col] == 'C')
-				render_image(data, t->collect[t->frame], c);
-			else if (c->map[c->row][c->col] == 'P')
-			{
-				if (data->player->facing == 'L')
-					render_image(data, t->playerL[t->frame], c);
-				else if (data->player->facing == 'R')
-					render_image(data, t->playerR[t->frame], c);
-			}
+			draw_objects(data, c, t);
             c->col++;
         }
         c->row++;
     }
-	char	*msg;
-	char	*moves;
-	moves = ft_itoa(data->player->moves);
-	msg = ft_strjoin("Moves: ", moves);
-	mlx_string_put(data->mlx_ptr, data->win_ptr, c->width / 2, c->height - c->current_line, 11001101, msg);
-	free(msg);
-	free(moves);
+	draw_moves(data, c);
 }
 
 void	map_window(t_data *data, t_map *c, t_texture *t)

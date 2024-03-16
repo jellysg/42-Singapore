@@ -1,7 +1,8 @@
 OBJS_SL = $(SRCS_SL:.c=.o)
 SRCS_SL = $(addprefix $(SRC_DIR)/, \
-	core/main.c core/map.c core/logic.c core/event.c core/move.c \
-	utils/init.c utils/mem.c utils/open_ber.c utils/validate_path.c utils/utils.c \
+	core/main.c core/map.c core/event.c core/move.c \
+	core/logic.c core/monster_logic.c \
+	utils/init.c utils/mem.c utils/open_ber.c utils/validate_path.c utils/render.c \
 )
 
 SRC_DIR	= ./sources

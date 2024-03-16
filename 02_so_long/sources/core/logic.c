@@ -1,10 +1,15 @@
 #include "../../includes/so_long.h"
 
-void    check_collect(t_data *data)
+void    check_unique(t_data *data)
 {
     if (data->map->map[data->player->y][data->player->x] == 'C')
     {
         data->player->score++;
+    }
+    else if (data->map->map[data->player->y][data->player->x] == 'M')
+    {
+        ft_printf("You lost!\n");
+        game_destroy(data);
     }
     return;
 }
@@ -26,7 +31,7 @@ void    check_up(t_data *data)
     {
         data->player->y--;
         data->player->moves++;
-        check_collect(data);
+        check_unique(data);
     }
     return;
 }
@@ -48,7 +53,7 @@ void    check_down(t_data *data)
     {
         data->player->y++;
         data->player->moves++;
-        check_collect(data);
+        check_unique(data);
     }
     return;
 }
@@ -71,7 +76,7 @@ void    check_left(t_data *data)
     {
         data->player->x--;
         data->player->moves++;
-        check_collect(data);
+        check_unique(data);
     }
     return;
 }
@@ -94,7 +99,7 @@ void    check_right(t_data *data)
     {
         data->player->x++;
         data->player->moves++;
-        check_collect(data);
+        check_unique(data);
     }
     return;
 }

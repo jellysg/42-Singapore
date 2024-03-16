@@ -1,10 +1,11 @@
 #include "../../includes/so_long.h"
 
-void	init_vars(t_data *init)
+void	init_map(t_data *init)
 {
 	init->map->e_count = 0;
 	init->map->p_count = 0;
 	init->map->c_count = 0;
+	init->map->m_count = 0;
 	init->map->e_found = 0;
 	init->map->c_found = 0;
 	init->map->current_line = 0;
@@ -15,26 +16,37 @@ void	init_vars(t_data *init)
 	init->map->col = 0;
 	init->map->start_row = -1;
 	init->map->start_col = -1;
+}
+
+void	init_vars(t_data *init)
+{
+	init_map(init);
 	init->player->x = 0;
 	init->player->y = 0;
 	init->player->moves = 0;
 	init->player->score = 0;
 	init->player->win = 0;
 	init->player->facing = 'L';
+	init->monster->num = 0;
+	init->monster->idle_time = 10;
+	init->monster->facing = 'R';
 }
 
 void	init_struct_pointers(t_data *data)
 {
-    t_map   *m;
+    t_map   *c;
     t_player    *p;
+	t_monster	*m;
     t_texture   *t;
 
-    m = malloc(sizeof(t_map));
+    c = malloc(sizeof(t_map));
     p = malloc(sizeof(t_player));
+	m = malloc(sizeof(t_monster));
     t = malloc(sizeof(t_texture));
 
-	data->map = m;
+	data->map = c;
     data->player = p;
+	data->monster = m;
     data->texture = t;
 	return;
 }
