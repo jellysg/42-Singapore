@@ -18,40 +18,8 @@ void	init_struct_pointers(t_data *data)
 
 int on_keypress(int keysym, t_data *data)
 {
-	(void)data;
-	printf("Pressed key: %d\n", keysym);
-    if (keysym == KEY_ESC)
-    {
-        game_destroy(data);
-    }
-    else if (keysym == KEY_W || keysym == KEY_UP)
-    {
-        data->map->map[data->player->y][data->player->x] = '0';
-        data->player->y--;
-        if (data->map->map[data->player->y][data->player->x] = 'C')
-            
-        data->map->map[data->player->y][data->player->x] = 'P';
-    }
-    else if (keysym == KEY_S || keysym == KEY_DOWN)
-    {
-        data->map->map[data->player->y][data->player->x] = '0';
-        data->player->y++;
-        data->map->map[data->player->y][data->player->x] = 'P';
-    }
-    else if (keysym == KEY_A || keysym == KEY_LEFT)
-    {
-        data->map->map[data->player->y][data->player->x] = '0';
-        data->player->x--;
-        data->player->facing = 'L';
-        data->map->map[data->player->y][data->player->x] = 'P';
-    }
-    else if (keysym == KEY_D || keysym == KEY_RIGHT)
-    {
-        data->map->map[data->player->y][data->player->x] = '0';
-        data->player->x++;
-        data->player->facing = 'R';
-        data->map->map[data->player->y][data->player->x] = 'P';
-    }
+    printf("Pressed key: %d\n", keysym);
+    key_event(keysym, data);
 	return (0);
 }
 

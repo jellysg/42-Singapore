@@ -2,9 +2,8 @@
 
 int game_destroy(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	free_elements(data);
 	exit(0);
 	return (0);
@@ -20,8 +19,15 @@ void free_elements(t_data *data)
         free(data->map->map[i]);
 		i++;
     }
+	i = 0;
+	while (i < data->map->current_line)
+    {
+        free(data->map->map_buffer[i]);
+		i++;
+    }
     free(data->map->map);
-	free(data->texture->px_size);
+	free(data->map->map_buffer);
+	free(data->texture);
 }
 
 void    mem_dup(t_map *c)

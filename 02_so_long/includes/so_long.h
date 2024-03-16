@@ -57,6 +57,7 @@ typedef struct s_player
     int y;
 	int	score;
 	int	moves;
+	int win;
 	char	facing;
 } t_player;
 
@@ -71,6 +72,7 @@ typedef	struct s_texture
 	int	*px_size;
 	int	*px_height;
 	int	*px_width;
+	int	keyframe;
 	int	frame;
 } t_texture;
 
@@ -83,15 +85,33 @@ typedef struct s_data
 	t_map	*map;
 }	t_data;
 
+
 // MiniLibX functions
 void *mlx_xpm_file_to_image(void *mlx_ptr, char *filename, int *width, int *height);
 int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y);
 
-// Core functions
 
+// Core functions
 // so_long.c
-int so_long_loop(t_data *data);
-int update(t_data *data);
+long long	timestamp(void);
+int game_loop(t_data *data);
+
+// event.c
+void    key_event(int keysym, t_data *data);
+int	refresh(t_data *data);
+
+// move.c
+void    move_up(t_data *data);
+void    move_down(t_data *data);
+void    move_left(t_data *data);
+void    move_right(t_data *data);
+
+// logic.c
+void    check_collect(t_data *data);
+void    check_up(t_data *data);
+void	check_down(t_data *data);
+void    check_left(t_data *data);
+void    check_right(t_data *data);
 
 // map.c
 // static void	init_vars(t_data *init);
@@ -99,8 +119,8 @@ void	draw_map(t_data *data, t_map *c, t_texture *t);
 void	map_window(t_data *data, t_map *c, t_texture *t);
 void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv);
 
-// Utils functions
 
+// Utils functions
 // mem.c
 int game_destroy(t_data *data);
 void	mem_alloc(t_map *c);

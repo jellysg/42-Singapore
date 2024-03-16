@@ -17,7 +17,9 @@ static void	init_vars(t_data *init)
 	init->map->start_col = -1;
 	init->player->x = 0;
 	init->player->y = 0;
-	init->texture->frame = 0;
+	init->player->moves = 1;
+	init->player->score = 0;
+	init->player->win = 0;
 	init->player->facing = 'L';
 }
 
@@ -34,7 +36,7 @@ void	draw_map(t_data *data, t_map *c, t_texture *t)
 			else if (c->map[c->row][c->col] == '0')
                 render_image(data, t->floor, c);
 			else if (c->map[c->row][c->col] == 'E')
-				render_image(data, t->exit[0], c);
+				render_image(data, t->exit[data->player->win], c);
 			else if (c->map[c->row][c->col] == 'C')
 				render_image(data, t->collect[t->frame], c);
 			else if (c->map[c->row][c->col] == 'P')
@@ -48,12 +50,19 @@ void	draw_map(t_data *data, t_map *c, t_texture *t)
         }
         c->row++;
     }
+	char	*msg;
+	char	*moves;
+	moves = ft_itoa(data->player->moves);
+	msg = ft_strjoin("Moves: ", moves);
+	mlx_string_put(data->mlx_ptr, data->win_ptr, c->width / 2, c->height - c->current_line, 11001101, msg);
+	free(msg);
+	free(moves);
 }
 
 void	map_window(t_data *data, t_map *c, t_texture *t)
 {
 	c->width = SIZE * (c->len);
-	c->height = SIZE * (c->current_line);
+	c->height = SIZE * c->current_line;
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, c->width, c->height, "so_long");
 	render_xpm(data, t);
@@ -70,7 +79,7 @@ void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv)
 		ft_printf("%c located at: ", c->map[p->y][p->x]);
 		ft_printf("%i, %i\n", p->y, p->x);
 		map_window(data, c, data->texture);
-		so_long_loop(data);
+		game_loop(data);
 		free(c->line);
     	free(c->prev_line);
 	}
