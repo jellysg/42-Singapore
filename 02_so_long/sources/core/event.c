@@ -1,5 +1,14 @@
 #include "../../includes/so_long.h"
 
+int	game_destroy(t_data *data)
+{
+	mlx_destroy_display(data->mlx_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	free_game(data);
+	exit(0);
+	return (0);
+}
+
 int on_keypress(int keysym, t_data *data)
 {
     key_event(keysym, data);
@@ -19,7 +28,7 @@ int refresh(t_data *data)
         data->texture->frame = (data->texture->frame + 1) % 4;
     }
 	usleep(1000000 / FRAME_RATE);
-    monster_logic(data, data->monster);
+    monster_logic(data);
     return (0);
 }
 

@@ -1,15 +1,6 @@
 #include "../../includes/so_long.h"
 
-int game_destroy(t_data *data)
-{
-	mlx_destroy_display(data->mlx_ptr);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	free_elements(data);
-	exit(0);
-	return (0);
-}
-
-void free_elements(t_data *data)
+void	free_elements(t_data *data)
 {
 	int	i;
 
@@ -17,17 +8,58 @@ void free_elements(t_data *data)
     while (i < data->map->current_line)
     {
         free(data->map->map[i]);
-		i++;
-    }
-	i = 0;
-	while (i < data->map->current_line)
-    {
-        free(data->map->map_buffer[i]);
+		free(data->map->map_buffer[i]);
 		i++;
     }
     free(data->map->map);
-	free(data->map->map_buffer);
-	free(data->texture);
+	data->map->map = NULL;
+    data->map->map_buffer = NULL;
+    free(data->monster->x);
+    free(data->monster->y);
+    free(data->monster->facing);
+    data->monster->x = NULL;
+    data->monster->y = NULL;
+    data->monster->facing = NULL;
+}
+
+void	free_game(t_data *data)
+{
+	free_elements(data);
+    if (data->map != NULL)
+    {
+        free(data->map);
+        data->map = NULL;
+    }
+    if (data->player != NULL)
+    {
+        free(data->player);
+        data->player = NULL;
+    }
+    if (data->monster != NULL)
+    {
+        free(data->monster);
+        data->monster = NULL;
+    }
+    if (data->texture != NULL)
+    {
+        free(data->texture);
+        data->texture = NULL;
+    }
+}
+
+void	mem_monster(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	data->monster->x = malloc((data->map->m_count) * sizeof(int));
+	data->monster->y = malloc((data->map->m_count) * sizeof(int));
+	data->monster->facing = malloc((data->map->m_count) * sizeof(char));
+	while (i < data->map->m_count)
+	{
+		data->monster->facing[i] = data->monster->init_facing;
+		i++;
+	}
 }
 
 void    mem_dup(t_map *c)
@@ -46,7 +78,7 @@ void    mem_dup(t_map *c)
 	}
 }
 
-void mem_alloc(t_map *c)
+void	mem_alloc(t_map *c)
 {
 	int i;
 

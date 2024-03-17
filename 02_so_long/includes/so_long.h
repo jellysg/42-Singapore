@@ -55,10 +55,12 @@ typedef struct s_map
 typedef struct s_monster
 {
 	int num;
+	int	count;
 	int	*x;
 	int	*y;
 	int	idle_time;
-	char	facing;
+	char	init_facing;
+	char	*facing;
 } t_monster;
 
 typedef struct s_player
@@ -105,14 +107,14 @@ int mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr, int x, 
 
 
 // Core functions
-// so_long.c
-long long	timestamp(void);
+// main.c
 int game_loop(t_data *data);
 
 // event.c
+int	game_destroy(t_data *data);
 int on_keypress(int keysym, t_data *data);
-void    key_event(int keysym, t_data *data);
 int	refresh(t_data *data);
+void    key_event(int keysym, t_data *data);
 
 // move.c
 void    move_up(t_data *data);
@@ -128,9 +130,13 @@ void    check_left(t_data *data);
 void    check_right(t_data *data);
 
 // monster_logic.c
-void    monster_logic(t_data *data, t_monster *mon);
+void    monster_left(t_data *data, int num);
+void    monster_right(t_data *data, int num);
+void    monster_move(t_data *data);
+void    monster_logic(t_data *data);
 
 // map.c
+void	draw_objects(t_data *data, t_map *c, t_texture *t);
 void	draw_map(t_data *data, t_map *c, t_texture *t);
 void	map_window(t_data *data, t_map *c, t_texture *t);
 void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv);
@@ -141,13 +147,15 @@ void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv);
 void	init_map(t_data *init);
 void	init_vars(t_data *init);
 void	init_struct_pointers(t_data *data);
-int	init_player_pos(t_map *c, t_player *p, int row, int col);
+int	init_player_coords(t_map *c, t_player *p, int row, int col);
+void    init_monster_coords(t_map *c, t_monster *m);
 
 // mem.c
-int game_destroy(t_data *data);
-void	mem_alloc(t_map *c);
-void    mem_dup(t_map *c);
 void    free_elements(t_data *data);
+void	free_game(t_data *data);
+void	mem_monster(t_data *data);
+void    mem_dup(t_map *c);
+void	mem_alloc(t_map *c);
 
 // open_ber.c
 int	walls_and_components(t_map *c);
@@ -161,6 +169,7 @@ bool is_valid_path(t_map *c, int row, int col);
 bool validate_path(t_map *c, t_player *p, int fd);
 
 // render.c
+void	render_moves(t_data *d, t_map *c);
 void    *xpm_i(t_data *d, char *path, t_texture *t);
 void	render_characters(t_data *data, t_texture *t);
 void	render_xpm(t_data *data, t_texture *t);

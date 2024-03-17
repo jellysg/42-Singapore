@@ -1,18 +1,5 @@
 #include "../../includes/so_long.h"
 
-void	draw_moves(t_data *d, t_map *c)
-{
-	char	*msg;
-	char	*moves;
-
-	moves = ft_itoa(d->player->moves);
-	msg = ft_strjoin("Moves: ", moves);
-	mlx_string_put(d->mlx_ptr, d->win_ptr, c->width / 2,
-	 c->height - c->current_line, 11001101, msg);
-	free(msg);
-	free(moves);
-}
-
 void	draw_objects(t_data *data, t_map *c, t_texture *t)
 {
 	if (c->map[c->row][c->col] == '1')
@@ -32,17 +19,18 @@ void	draw_objects(t_data *data, t_map *c, t_texture *t)
 	}
 	else if (c->map[c->row][c->col] == 'M')
 	{
-		if (data->monster->facing == 'L')
+		if (data->monster->facing[data->monster->count] == 'L')
 			render_image(data, t->monsterL[t->frame], c);
-		else if (data->monster->facing == 'R')
+		else if (data->monster->facing[data->monster->count] == 'R')
 			render_image(data, t->monsterR[t->frame], c);
-		c->m_count++;
+		data->monster->count++;
 	}
 }
 
 void	draw_map(t_data *data, t_map *c, t_texture *t)
 {
 	c->row = 0;
+	data->monster->count = 0;
     while (c->row < c->current_line)
     {
         c->col = 0;
@@ -53,7 +41,7 @@ void	draw_map(t_data *data, t_map *c, t_texture *t)
         }
         c->row++;
     }
-	draw_moves(data, c);
+	render_moves(data, c);
 }
 
 void	map_window(t_data *data, t_map *c, t_texture *t)
@@ -63,6 +51,7 @@ void	map_window(t_data *data, t_map *c, t_texture *t)
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, c->width, c->height, "so_long");
 	render_xpm(data, t);
+	mem_monster(data);
 	draw_map(data, c, t);
 	return;
 }

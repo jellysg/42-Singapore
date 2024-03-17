@@ -28,8 +28,9 @@ void	init_vars(t_data *init)
 	init->player->win = 0;
 	init->player->facing = 'L';
 	init->monster->num = 0;
+	init->monster->count = 0;
 	init->monster->idle_time = 10;
-	init->monster->facing = 'R';
+	init->monster->init_facing = 'R';
 }
 
 void	init_struct_pointers(t_data *data)
@@ -51,7 +52,7 @@ void	init_struct_pointers(t_data *data)
 	return;
 }
 
-int	init_player_pos(t_map *c, t_player *p, int row, int col)
+int	init_player_coords(t_map *c, t_player *p, int row, int col)
 {
     while (row < c->current_line)
     {
@@ -77,4 +78,33 @@ int	init_player_pos(t_map *c, t_player *p, int row, int col)
         return (0);
 	}
 	return (1);
+}
+
+void    init_monster_coords(t_map *c, t_monster *mon)
+{
+    int num;
+
+    num = 0;
+    while (num != c->m_count)
+    {
+        int row;
+        int col;
+
+        row = 0;
+        while (row < c->current_line && num < c->m_count)
+        {
+            col = 0;
+            while (col < c->len)
+            {
+                if (c->map[row][col] == 'M')
+                {
+                    mon->y[num] = row;
+                    mon->x[num] = col;
+                    num++;
+                }
+                col++;
+            }
+            row++;
+        }
+    }
 }

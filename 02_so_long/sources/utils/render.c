@@ -1,5 +1,18 @@
 #include "../../includes/so_long.h"
 
+void	render_moves(t_data *d, t_map *c)
+{
+	char	*msg;
+	char	*moves;
+
+	moves = ft_itoa(d->player->moves);
+	msg = ft_strjoin("Moves: ", moves);
+	mlx_string_put(d->mlx_ptr, d->win_ptr, c->width / 2,
+	 c->height - c->current_line, 11001101, msg);
+	free(msg);
+	free(moves);
+}
+
 void    *xpm_i(t_data *d, char *path, t_texture *t)
 {
     return (mlx_xpm_file_to_image(d->mlx_ptr, path, t->px_size, t->px_size));
