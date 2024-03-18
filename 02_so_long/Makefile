@@ -25,7 +25,7 @@ MF = Makefile
 NAME = so_long
 LIBFT_PATH = ./libft/libft.a
 SL_HEADER_FILE = $(INC_DIR)/so_long.h
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 GFLAGS = -lXext -lX11 -lm -lbsd
 GPATH = ./mlx/

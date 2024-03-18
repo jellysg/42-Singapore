@@ -32,6 +32,8 @@ int	game_destroy(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->texture->exit[i]);
 		i++;
 	}
+	mlx_destroy_image(data->mlx_ptr, data->texture->wall);
+	mlx_destroy_image(data->mlx_ptr, data->texture->floor);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free_game(data);
@@ -42,6 +44,7 @@ int	game_destroy(t_data *data)
 int	on_keypress(int keysym, t_data *data)
 {
 	key_event(keysym, data);
+	ft_printf("Moves: %i\n", data->player->moves);
 	return (0);
 }
 

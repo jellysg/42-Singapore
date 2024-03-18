@@ -24,15 +24,12 @@ void	free_elements(t_data *data)
 		i++;
 	}
 	free(data->map->map);
-	data->map->map = NULL;
 	free(data->map->map_buffer);
-	data->map->map_buffer = NULL;
 	free(data->monster->x);
-	data->monster->x = NULL;
 	free(data->monster->y);
-	data->monster->y = NULL;
 	free(data->monster->facing);
-	data->monster->facing = NULL;
+	free(data->map->line);
+	free(data->map->prev_line);
 }
 
 void	free_game(t_data *data)
@@ -96,9 +93,9 @@ void	mem_alloc(t_map *c)
 	int	i;
 
 	i = 0;
-	c->map_buffer = (char **)malloc((c->current_line + 1) * sizeof(char *));
+	c->map_buffer = (char **)ft_calloc((c->current_line + 1) , sizeof(char *));
 	mem_dup(c);
-	c->map = (char **)malloc((c->current_line + 1) * sizeof(char *));
+	c->map = (char **)ft_calloc((c->current_line + 1) , sizeof(char *));
 	while (i < c->current_line)
 	{
 		c->map[i] = ft_strdup(c->map_buffer[i]);
