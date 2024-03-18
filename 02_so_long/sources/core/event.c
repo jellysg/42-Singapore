@@ -14,8 +14,26 @@
 
 int	game_destroy(t_data *data)
 {
-	mlx_destroy_display(data->mlx_ptr);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->texture->player_l[i]);
+		mlx_destroy_image(data->mlx_ptr, data->texture->player_r[i]);
+		mlx_destroy_image(data->mlx_ptr, data->texture->monster_l[i]);
+		mlx_destroy_image(data->mlx_ptr, data->texture->monster_r[i]);
+		mlx_destroy_image(data->mlx_ptr, data->texture->collect[i]);
+		i++;
+	}
+	i = 0;
+	while (i < 2)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->texture->exit[i]);
+		i++;
+	}
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
 	free_game(data);
 	exit(0);
 	return (0);

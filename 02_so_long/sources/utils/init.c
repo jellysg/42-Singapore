@@ -52,14 +52,15 @@ void	init_struct_pointers(t_data *data)
 	t_monster	*m;
 	t_texture	*t;
 
-	c = malloc(sizeof(t_map));
-	p = malloc(sizeof(t_player));
-	m = malloc(sizeof(t_monster));
-	t = malloc(sizeof(t_texture));
+	c = ft_calloc(1 , sizeof(t_map));
+	p = ft_calloc(1 , sizeof(t_player));
+	m = ft_calloc(1 , sizeof(t_monster));
+	t = ft_calloc(1 , sizeof(t_texture));
 	data->map = c;
 	data->player = p;
 	data->monster = m;
 	data->texture = t;
+	init_vars(data);
 	return ;
 }
 

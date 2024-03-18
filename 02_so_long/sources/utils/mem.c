@@ -25,12 +25,13 @@ void	free_elements(t_data *data)
 	}
 	free(data->map->map);
 	data->map->map = NULL;
+	free(data->map->map_buffer);
 	data->map->map_buffer = NULL;
 	free(data->monster->x);
-	free(data->monster->y);
-	free(data->monster->facing);
 	data->monster->x = NULL;
+	free(data->monster->y);
 	data->monster->y = NULL;
+	free(data->monster->facing);
 	data->monster->facing = NULL;
 }
 

@@ -71,7 +71,6 @@ void	map_window(t_data *data, t_map *c, t_texture *t)
 
 void	create_map(t_data *data, int argc, char **argv)
 {
-	init_vars(data);
 	if (open_ber(data->map, argv[1], argc, argv) != -1
 		&& validate_path(data->map, data->player, data->map->fd) == true)
 	{
