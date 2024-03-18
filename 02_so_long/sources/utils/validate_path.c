@@ -1,4 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_path.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergoh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/18 13:40:34 by jergoh            #+#    #+#             */
+/*   Updated: 2024/03/18 13:40:36 by jergoh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
+
+int	boundary_check(t_map *c)
+{
+	c->len = ft_strlen(c->line) - 1;
+	if (c->line[c->len] == '\n')
+		c->line[c->len] = '\0';
+	while (c->current_col < c->len)
+	{
+		if (c->line[c->current_col] != '1')
+			return (-1);
+		c->current_col++;
+	}
+	return (0);
+}
+
+bool	pathing_map(t_map *c, int row, int col)
+{
+	bool	res1;
+	bool	res2;
+	bool	res3;
+	bool	res4;
+	bool	result;
+
+	res1 = is_valid_path(c, row - 1, col);
+	res2 = is_valid_path(c, row + 1, col);
+	res3 = is_valid_path(c, row, col - 1);
+	res4 = is_valid_path(c, row, col + 1);
+	result = (res1 || res2 || res3 || res4);
+	return (result);
+}
 
 void	invalid_format(t_map *c)
 {
@@ -18,27 +60,27 @@ void	invalid_format(t_map *c)
 	c->fd = -1;
 }
 
-bool is_valid_path(t_map *c, int row, int col)
+bool	is_valid_path(t_map *c, int row, int col)
 {
-    if (row < 0 || row >= c->current_line || col < 0 || col >= c->len || 
-	c->map_buffer[row][col] == '1' || c->map_buffer[row][col] == '-' || 
-    c->map_buffer[row][col] == 'N')
-        return (false);
-    if (c->map[row][col] == 'E')
-        c->e_found++;
-    else if (c->map[row][col] == 'C')
-        c->c_found++;
-    c->map_buffer[row][col] = '-';
-    bool result = is_valid_path(c, row - 1, col) ||
-                  is_valid_path(c, row + 1, col) ||
-                  is_valid_path(c, row, col - 1) ||
-                  is_valid_path(c, row, col + 1);
+	bool	result;
+
+	if (row < 0 || row >= c->current_line || col < 0 || col >= c->len
+		|| c->map_buffer[row][col] == '1'
+		|| c->map_buffer[row][col] == '-'
+		|| c->map_buffer[row][col] == 'N')
+		return (false);
+	if (c->map[row][col] == 'E')
+		c->e_found++;
+	else if (c->map[row][col] == 'C')
+		c->c_found++;
+	c->map_buffer[row][col] = '-';
+	result = pathing_map(c, row, col);
 	if (c->e_found == c->e_count && c->c_found == c->c_count)
 		return (true);
-    return (result);
+	return (result);
 }
 
-bool validate_path(t_map *c, t_player *p, int fd)
+bool	validate_path(t_map *c, t_player *p, int fd)
 {
 	if (fd == -1)
 		return (-1);
@@ -49,7 +91,7 @@ bool validate_path(t_map *c, t_player *p, int fd)
 		ft_printf("\n\033[1;31mInvalid Path\033[0m\n\n");
 		return (false);
 	}
-    ft_printf("\n\033[1;32mValid Path\033[0m\n");
+	ft_printf("\n\033[1;32mValid Path\033[0m\n");
 	ft_printf("\033[1;32mOpening map...\033[0m\n\n");
 	ft_printf("\033[1;35mHOW TO PLAY\n");
 	ft_printf("===========================================\n");

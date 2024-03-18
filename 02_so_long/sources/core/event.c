@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   event.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergoh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/18 10:50:52 by jergoh            #+#    #+#             */
+/*   Updated: 2024/03/18 10:56:26 by jergoh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/so_long.h"
 
 int	game_destroy(t_data *data)
@@ -9,41 +21,41 @@ int	game_destroy(t_data *data)
 	return (0);
 }
 
-int on_keypress(int keysym, t_data *data)
+int	on_keypress(int keysym, t_data *data)
 {
-    key_event(keysym, data);
+	key_event(keysym, data);
 	return (0);
 }
 
-int refresh(t_data *data)
+int	refresh(t_data *data)
 {
 	if (data->player->score == data->map->c_count)
-    {
-        data->player->win = 1;
-    }
+	{
+		data->player->win = 1;
+	}
 	draw_map(data, data->map, data->texture);
-    data->texture->keyframe = (data->texture->keyframe + 1) % 4;
-    if (data->texture->keyframe == 0)
-    {
-        data->texture->frame = (data->texture->frame + 1) % 4;
-    }
+	data->texture->keyframe = (data->texture->keyframe + 1) % 4;
+	if (data->texture->keyframe == 0)
+	{
+		data->texture->frame = (data->texture->frame + 1) % 4;
+	}
 	usleep(1000000 / FRAME_RATE);
-    monster_logic(data);
-    return (0);
+	monster_logic(data);
+	return (0);
 }
 
-void    key_event(int keysym, t_data *data)
+void	key_event(int keysym, t_data *data)
 {
-    if (keysym == KEY_ESC)
-        game_destroy(data);
-    else if (keysym == KEY_W || keysym == KEY_UP)
-        move_up(data);
-    else if (keysym == KEY_S || keysym == KEY_DOWN)
-        move_down(data);
-    else if (keysym == KEY_A || keysym == KEY_LEFT)
-        move_left(data);
-    else if (keysym == KEY_D || keysym == KEY_RIGHT)
-        move_right(data);
-    else
-        return;
+	if (keysym == KEY_ESC)
+		game_destroy(data);
+	else if (keysym == KEY_W || keysym == KEY_UP)
+		move_up(data);
+	else if (keysym == KEY_S || keysym == KEY_DOWN)
+		move_down(data);
+	else if (keysym == KEY_A || keysym == KEY_LEFT)
+		move_left(data);
+	else if (keysym == KEY_D || keysym == KEY_RIGHT)
+		move_right(data);
+	else
+		return ;
 }

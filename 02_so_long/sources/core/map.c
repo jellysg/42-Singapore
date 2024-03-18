@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jergoh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/18 11:15:06 by jergoh            #+#    #+#             */
+/*   Updated: 2024/03/18 11:15:07 by jergoh           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/so_long.h"
 
 void	draw_objects(t_data *data, t_map *c, t_texture *t)
@@ -13,16 +25,16 @@ void	draw_objects(t_data *data, t_map *c, t_texture *t)
 	else if (c->map[c->row][c->col] == 'P')
 	{
 		if (data->player->facing == 'L')
-			render_image(data, t->playerL[t->frame], c);
+			render_image(data, t->player_l[t->frame], c);
 		else if (data->player->facing == 'R')
-			render_image(data, t->playerR[t->frame], c);
+			render_image(data, t->player_r[t->frame], c);
 	}
 	else if (c->map[c->row][c->col] == 'M')
 	{
 		if (data->monster->facing[data->monster->count] == 'L')
-			render_image(data, t->monsterL[t->frame], c);
+			render_image(data, t->monster_l[t->frame], c);
 		else if (data->monster->facing[data->monster->count] == 'R')
-			render_image(data, t->monsterR[t->frame], c);
+			render_image(data, t->monster_r[t->frame], c);
 		data->monster->count++;
 	}
 }
@@ -31,41 +43,42 @@ void	draw_map(t_data *data, t_map *c, t_texture *t)
 {
 	c->row = 0;
 	data->monster->count = 0;
-    while (c->row < c->current_line)
-    {
-        c->col = 0;
-        while (c->col < c->len)
-        {
+	while (c->row < c->current_line)
+	{
+		c->col = 0;
+		while (c->col < c->len)
+		{
 			draw_objects(data, c, t);
-            c->col++;
-        }
-        c->row++;
-    }
+			c->col++;
+		}
+		c->row++;
+	}
 	render_moves(data, c);
 }
 
 void	map_window(t_data *data, t_map *c, t_texture *t)
 {
-	c->width = SIZE * (c->len);
+	c->width = SIZE * c->len;
 	c->height = SIZE * c->current_line;
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, c->width, c->height, "so_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr,
+			c->width, c->height, "so_long");
 	render_xpm(data, t);
 	mem_monster(data);
 	draw_map(data, c, t);
-	return;
+	return ;
 }
 
-void	create_map(t_data *data, t_map *c, t_player *p, int argc, char **argv)
+void	create_map(t_data *data, int argc, char **argv)
 {
-
 	init_vars(data);
-	if (open_ber(c, argv[1], argc, argv) != -1 && validate_path(c, p, c->fd) == true)
+	if (open_ber(data->map, argv[1], argc, argv) != -1
+		&& validate_path(data->map, data->player, data->map->fd) == true)
 	{
-		map_window(data, c, data->texture);
+		map_window(data, data->map, data->texture);
 		game_loop(data);
-		free(c->line);
-    	free(c->prev_line);
+		free(data->map->line);
+		free(data->map->prev_line);
 	}
-	close(c->fd);
+	close(data->map->fd);
 }

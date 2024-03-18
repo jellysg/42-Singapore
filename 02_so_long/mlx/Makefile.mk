@@ -42,7 +42,7 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
-	@printf "\033[1;30m|\033[0m"
+	@printf "\033[1;33m|\033[0m"
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
 
 $(NAME)	: $(OBJ)
@@ -50,7 +50,7 @@ $(NAME)	: $(OBJ)
 	ranlib $(NAME)
 	cp $(NAME) $(NAME_UNAME)
 	@echo ""
-	@printf "\033[1;30m%s\033[0m\n" "[minilibx] Compiled successfully."
+	@printf "\033[1;33m%s\033[0m\n" "[minilibx] Compiled successfully."
 
 check: all
 	@test/run_tests.sh
