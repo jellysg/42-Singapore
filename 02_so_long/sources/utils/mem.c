@@ -35,26 +35,10 @@ void	free_elements(t_data *data)
 void	free_game(t_data *data)
 {
 	free_elements(data);
-	if (data->map != NULL)
-	{
-		free(data->map);
-		data->map = NULL;
-	}
-	if (data->player != NULL)
-	{
-		free(data->player);
-		data->player = NULL;
-	}
-	if (data->monster != NULL)
-	{
-		free(data->monster);
-		data->monster = NULL;
-	}
-	if (data->texture != NULL)
-	{
-		free(data->texture);
-		data->texture = NULL;
-	}
+	free(data->map);
+	free(data->player);
+	free(data->monster);
+	free(data->texture);
 }
 
 void	mem_monster(t_data *data)
@@ -72,20 +56,18 @@ void	mem_monster(t_data *data)
 	}
 }
 
-void	mem_dup(t_map *c)
+void	mem_map_buffer(t_map *c)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	if (c->current_line != 0)
-		c->map[c->current_line - 1] = ft_strdup(c->prev_line);
-	if (!c->map_buffer)
-		return ;
-	while (count < c->current_line)
+	i = 0;
+	c->map_buffer = (char **)malloc((c->current_line + 1) * sizeof(char *));
+	while (i < c->current_line)
 	{
-		c->map_buffer[count] = ft_strdup(c->map[count]);
-		count++;
+		c->map_buffer[i] = ft_strdup(c->map[i]);
+		i++;
 	}
+	c->map_buffer[c->current_line] = ft_strdup(c->line);
 }
 
 void	mem_alloc(t_map *c)
@@ -93,14 +75,17 @@ void	mem_alloc(t_map *c)
 	int	i;
 
 	i = 0;
-	c->map_buffer = (char **)ft_calloc((c->current_line + 1) , sizeof(char *));
-	mem_dup(c);
-	c->map = (char **)ft_calloc((c->current_line + 1) , sizeof(char *));
+	if (c->current_line != 0)
+	{
+		free(c->map[c->current_line - 1]);
+		c->map[c->current_line - 1] = ft_strdup(c->prev_line);
+	}
+	mem_map_buffer(c);
+	c->map = (char **)malloc((c->current_line + 1) * sizeof(char *));
 	while (i < c->current_line)
 	{
 		c->map[i] = ft_strdup(c->map_buffer[i]);
 		i++;
 	}
 	c->map[c->current_line] = ft_strdup(c->line);
-	c->map_buffer[c->current_line] = ft_strdup(c->line);
 }

@@ -47,19 +47,10 @@ void	init_vars(t_data *init)
 
 void	init_struct_pointers(t_data *data)
 {
-	t_map		*c;
-	t_player	*p;
-	t_monster	*m;
-	t_texture	*t;
-
-	c = ft_calloc(1 , sizeof(t_map));
-	p = ft_calloc(1 , sizeof(t_player));
-	m = ft_calloc(1 , sizeof(t_monster));
-	t = ft_calloc(1 , sizeof(t_texture));
-	data->map = c;
-	data->player = p;
-	data->monster = m;
-	data->texture = t;
+	data->map = ft_calloc(1 , sizeof(t_map));
+	data->player = ft_calloc(1 , sizeof(t_player));
+	data->monster = ft_calloc(1 , sizeof(t_monster));
+	data->texture = ft_calloc(1 , sizeof(t_texture));
 	init_vars(data);
 	return ;
 }

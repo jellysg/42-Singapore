@@ -71,6 +71,7 @@ int	valid_map_format(t_map *c)
 	mem_alloc(c);
 	c->current_line++;
 	c->current_col = 0;
+	free(c->prev_line);
 	c->prev_line = ft_strdup(c->line);
 	return (0);
 }
@@ -89,6 +90,7 @@ void	read_ber(t_map *c)
 				return ;
 			}
 		}
+		free(c->line);
 	}
 	while (c->current_col < c->len)
 	{

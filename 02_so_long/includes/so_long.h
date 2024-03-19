@@ -114,6 +114,7 @@ typedef struct s_data
 
 // Core functions
 // main.c
+void	game_end(t_data *data, int i);
 int		game_loop(t_data *data);
 
 // event.c
@@ -159,7 +160,7 @@ void	init_monster_coords(t_map *c, t_monster *m);
 void	free_elements(t_data *data);
 void	free_game(t_data *data);
 void	mem_monster(t_data *data);
-void	mem_dup(t_map *c);
+void	mem_map_buffer(t_map *c);
 void	mem_alloc(t_map *c);
 
 // open_ber.c

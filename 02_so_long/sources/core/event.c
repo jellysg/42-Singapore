@@ -26,12 +26,8 @@ int	game_destroy(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->texture->collect[i]);
 		i++;
 	}
-	i = 0;
-	while (i < 2)
-	{
-		mlx_destroy_image(data->mlx_ptr, data->texture->exit[i]);
-		i++;
-	}
+	mlx_destroy_image(data->mlx_ptr, data->texture->exit[0]);
+	mlx_destroy_image(data->mlx_ptr, data->texture->exit[1]);
 	mlx_destroy_image(data->mlx_ptr, data->texture->wall);
 	mlx_destroy_image(data->mlx_ptr, data->texture->floor);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);

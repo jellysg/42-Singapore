@@ -20,8 +20,7 @@ void	check_unique(t_data *data)
 	}
 	else if (data->map->map[data->player->y][data->player->x] == 'M')
 	{
-		ft_printf("You lost!\n");
-		game_destroy(data);
+		game_end(data, 0);
 	}
 	return ;
 }
@@ -33,11 +32,7 @@ void	check_up(t_data *data)
 	else if (data->map->map[data->player->y - 1][data->player->x] == 'E')
 	{
 		if (data->player->win == 1)
-		{
-			ft_printf("You won!\n");
-			game_destroy(data);
-		}
-		return ;
+			game_end(data, 1);
 	}
 	else
 	{
@@ -55,11 +50,7 @@ void	check_down(t_data *data)
 	else if (data->map->map[data->player->y + 1][data->player->x] == 'E')
 	{
 		if (data->player->win == 1)
-		{
-			ft_printf("You won!\n");
-			game_destroy(data);
-		}
-		return ;
+			game_end(data, 1);
 	}
 	else
 	{
@@ -78,11 +69,7 @@ void	check_left(t_data *data)
 	else if (data->map->map[data->player->y][data->player->x - 1] == 'E')
 	{
 		if (data->player->win == 1)
-		{
-			ft_printf("You won!\n");
-			game_destroy(data);
-		}
-		return ;
+			game_end(data, 1);
 	}
 	else
 	{
@@ -101,11 +88,7 @@ void	check_right(t_data *data)
 	else if (data->map->map[data->player->y][data->player->x + 1] == 'E')
 	{
 		if (data->player->win == 1)
-		{
-			ft_printf("You won!\n");
-			game_destroy(data);
-		}
-		return ;
+			game_end(data, 1);
 	}
 	else
 	{

@@ -23,8 +23,7 @@ void	monster_left(t_data *data, int num)
 	}
 	else if (coords == 'P')
 	{
-		ft_printf("You lost!\n");
-		game_destroy(data);
+		game_end(data, 0);
 	}
 	else
 	{
@@ -45,8 +44,7 @@ void	monster_right(t_data *data, int num)
 	}
 	else if (coords == 'P')
 	{
-		ft_printf("You lost!\n");
-		game_destroy(data);
+		game_end(data, 0);
 	}
 	else
 	{

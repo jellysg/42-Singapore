@@ -12,6 +12,25 @@
 
 #include "../../includes/so_long.h"
 
+void	game_end(t_data *data, int i)
+{
+	if (i == 1)
+	{
+		ft_printf("You won!\n");
+		game_destroy(data);
+	}
+	else if (i == 0)
+	{
+		ft_printf("You lost!\n");
+		game_destroy(data);
+	}
+	else if (i == -1)
+	{
+		ft_printf("Game ended.\n");
+		game_destroy(data);
+	}
+}
+
 int	game_loop(t_data *data)
 {
 	while (1)
@@ -31,6 +50,6 @@ int	main(int argc, char **argv)
 
 	init_struct_pointers(&data);
 	create_map(&data, argc, argv);
-	free_elements(&data);
+	game_end(&data, -1);
 	return (0);
 }

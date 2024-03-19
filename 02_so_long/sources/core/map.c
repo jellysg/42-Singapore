@@ -75,9 +75,9 @@ void	create_map(t_data *data, int argc, char **argv)
 		&& validate_path(data->map, data->player, data->map->fd) == true)
 	{
 		map_window(data, data->map, data->texture);
-		game_loop(data);
 		free(data->map->line);
-		free(data->map->prev_line);
+		game_loop(data);
 	}
+	game_destroy(data);
 	close(data->map->fd);
 }
