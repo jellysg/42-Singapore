@@ -157,7 +157,7 @@ int		init_player_coords(t_map *c, t_player *p, int row, int col);
 void	init_monster_coords(t_map *c, t_monster *m);
 
 // mem.c
-void	free_elements(t_data *data);
+void	free_map(t_map *c);
 void	free_game(t_data *data);
 void	mem_monster(t_data *data);
 void	mem_map_buffer(t_map *c);

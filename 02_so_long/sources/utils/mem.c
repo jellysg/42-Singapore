@@ -12,29 +12,29 @@
 
 #include "../../includes/so_long.h"
 
-void	free_elements(t_data *data)
+void	free_map(t_map *c)
 {
 	int	i;
 
 	i = 0;
-	while (i < data->map->current_line)
+	while (i < c->current_line)
 	{
-		free(data->map->map[i]);
-		free(data->map->map_buffer[i]);
+		free(c->map[i]);
+		free(c->map_buffer[i]);
 		i++;
 	}
-	free(data->map->map);
-	free(data->map->map_buffer);
-	free(data->monster->x);
-	free(data->monster->y);
-	free(data->monster->facing);
-	free(data->map->line);
-	free(data->map->prev_line);
+	free(c->map);
+	free(c->map_buffer);
+	free(c->line);
+	free(c->prev_line);
 }
 
 void	free_game(t_data *data)
 {
-	free_elements(data);
+	free_map(data->map);
+	free(data->monster->x);
+	free(data->monster->y);
+	free(data->monster->facing);
 	free(data->map);
 	free(data->player);
 	free(data->monster);
