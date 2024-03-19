@@ -87,10 +87,11 @@ void	read_ber(t_map *c)
 			if (valid_map_format(c) != 0)
 			{
 				invalid_format(c);
+				free(c->line);
 				return ;
 			}
+			free(c->line);
 		}
-		free(c->line);
 	}
 	while (c->current_col < c->len)
 	{

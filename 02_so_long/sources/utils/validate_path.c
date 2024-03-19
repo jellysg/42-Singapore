@@ -57,7 +57,6 @@ void	invalid_format(t_map *c)
 	if (c->e_count != 1)
 		ft_printf("Only one Exit(E) is required.\n");
 	ft_printf("\033[0m");
-	free(c->line);
 	c->fd = -1;
 }
 
