@@ -33,8 +33,8 @@ To test the game, run the following:
 
 # Tutorial: Getting started on so_long
 #### Disclaimer:
-Due to unoptimized struct linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
-For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.  
+Due to unoptimized struct linking, I have to make extra frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
+I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and I will revisit this when I have more time in the future.  
   
 ## Short introduction to MiniLibX:
 [MiniLibX (MLX)](https://harm-smits.github.io/42docs/libs/minilibx) is a beginner-friendly API for C, used mainly for a window system called [X11](https://tronche.com/gui/x/xlib/).  
