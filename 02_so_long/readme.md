@@ -64,24 +64,43 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # Core MLX functions for so_long:
 - mlx_init  
-> <sup>Initializes the mlx library before anything else.</sup>
+> Initializes the mlx library before anything else.
 - mlx_new_window  
-> <sup>Creates a new window instance.</sup>
+> Creates a new window instance.
 - mlx_hook  
-> <sup>"Hooks" or registers events onto the window or mlx pointer.</sup>
+> "Hooks" or registers events onto the window or mlx pointer.
 - mlx_loop  
-> <sup>Loops across the mlx pointer, registering the hooks in the same order they are called.</sup>
+> Loops across the mlx pointer, registering the hooks in the same order they are called.
 - mlx_xpm_file_to_image  
-> <sup>Converts XPM to a viewable image on an mlx pointer.</sup>
+> Converts XPM to a viewable image on an mlx pointer.
 - mlx_put_image_to_window  
-> <sup>Puts... image.. to window.. I don't know how else to explain this.</sup>  
+> Puts... image.. to window.. I don't know how else to explain this.  
   
 The following have to be called **in the same order** or there will be memory leaks:  
 - mlx_destroy_image  
-> <sup>Frees image stored in 'mlx_xpm_file_to_image' pointers.</sup>
+> Frees image stored in 'mlx_xpm_file_to_image' pointers.
 - mlx_destroy_window  
-> <sup>Frees the window instance.</sup>
+> Frees the window instance.
 - mlx_destroy_display  
-> <sup>Frees mlx.  
-> (Note: This frees the mlx functions but you still have to free your own mlx pointer!)</sup>
+> Frees mlx.  
+> (Note: This frees the mlx functions but you still have to free your own mlx pointer!)
 
+# Here is an example for creating the window:
+```
+#include <stdlib.h>
+#include "mlx/mlx.h"
+ 
+int main(void)
+{
+	void *mlx_ptr;
+	void *win_ptr;
+ 
+	mlx_ptr = mlx_init();
+	win_ptr = mlx_new_window(mlx_ptr, 300, 300, "test");
+    sleep(5); // 5 second sleep before closing the window
+	mlx_destroy_window(mlx_ptr, win_ptr);
+	mlx_destroy_display(mlx_ptr);
+	free(mlx_ptr);
+	return (0);
+}
+```
