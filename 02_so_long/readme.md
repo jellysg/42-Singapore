@@ -28,6 +28,9 @@ To test the game, run the following:
 ```
 ./so_long ./maps/(map name).ber
 ```
+  
+
+
 
 # Tutorial: Getting started on so_long
 ### Disclaimer:
@@ -35,7 +38,9 @@ My structs are not optimized. Due to unoptimized linking, I have to make pointle
 For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.  
   
 **This project has heavy focus on memory manipulation.**
+  
 
+  
 ## Short introduction to MiniLibX:
 [MiniLibX (MLX)](https://harm-smits.github.io/42docs/libs/minilibx) is a beginner-friendly API for C, used mainly for a window system called [X11](https://tronche.com/gui/x/xlib/).  
 
