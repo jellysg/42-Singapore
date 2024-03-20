@@ -1,4 +1,7 @@
 ## so_long
+![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)
+and thanks for the fish(???)
+
 #### Compiling
 
 After cloning, make sure you are in ./core/02_so_long/ directory, then make:
