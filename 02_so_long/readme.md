@@ -132,7 +132,7 @@ int on_destroy(t_data *data)
  
 int on_keypress(int keysym, t_data *data)
 {
-	// Casted (void) as we know it is declared but intentionally not in use
+	// Casted (void) as it is declared but intentionally not being used, yet ;D
 	(void)data;
 	printf("Pressed key: %d\\n", keysym);
 	return (0);
@@ -145,10 +145,10 @@ int main(void)
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 300, 300, "test");
  
-	// Key Hook
+	// Key Hook - when a key is pressed, it will call on_keypress
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &on_keypress, data);
  
-	// Destroy Hook
+	// Destroy Hook - when the window is closed, it will call on_destroy
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
  
 	// Loop the above hooks
@@ -156,10 +156,11 @@ int main(void)
 	return (0);
 }
 ```
-What happens is the window will wait for the user to input keypresses or close the window.  
+What happens is the window will wait for the user to input keypresses or close the window:  
 - When a key is pressed, it will print the pressed key in the terminal.  
 - When window is closed, it will carry out the function on_destroy.  
-> KeyPress and DestroyNotify are X11 events; accessible via importing the X11 headers.  
+
+> Note: KeyPress and DestroyNotify are X11 events; accessible via importing the X11 headers.  
 
 # Here are some pointers to take note of when tackling this project:
 1. XPM has to be converted to image first before putting into window
