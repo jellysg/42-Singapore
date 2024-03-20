@@ -135,7 +135,7 @@ int on_destroy(t_data *data)
  
 int on_keypress(int keysym, t_data *data)
 {
-    // Casted (void) as we know it is declared but intentionally not in use
+	// Casted (void) as we know it is declared but intentionally not in use
 	(void)data;
 	printf("Pressed key: %d\\n", keysym);
 	return (0);
@@ -160,6 +160,6 @@ int main(void)
 }
 ```
 What happens is the window will wait for the user to input keypresses or close the window.  
-When a key is pressed, it will print the pressed key in the terminal.  
-When window is closed, it will carry out the function on_destroy.  
-> KeyPress and DestroyNotify are X11 events, accessible via importing the X11 headers.
+- When a key is pressed, it will print the pressed key in the terminal.  
+- When window is closed, it will carry out the function on_destroy.  
+> KeyPress and DestroyNotify are X11 events; accessible via importing the X11 headers.
