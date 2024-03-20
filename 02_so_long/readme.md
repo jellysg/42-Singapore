@@ -36,9 +36,6 @@ To test the game, run the following:
 My structs are not optimized. Due to unoptimized linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
 For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.  
   
-**This project has heavy focus on memory manipulation.**
-  
-
 ## Short introduction to MiniLibX:
 [MiniLibX (MLX)](https://harm-smits.github.io/42docs/libs/minilibx) is a beginner-friendly API for C, used mainly for a window system called [X11](https://tronche.com/gui/x/xlib/).  
 
@@ -162,4 +159,13 @@ int main(void)
 What happens is the window will wait for the user to input keypresses or close the window.  
 - When a key is pressed, it will print the pressed key in the terminal.  
 - When window is closed, it will carry out the function on_destroy.  
-> KeyPress and DestroyNotify are X11 events; accessible via importing the X11 headers.
+> KeyPress and DestroyNotify are X11 events; accessible via importing the X11 headers.  
+
+# Here are some pointers to take note of when tackling this project:
+1. XPM has to be converted to image first before putting into window
+2. The map has to have a valid path for the Player to navigate to all collectibles and the exit (if 1 collectible is walled off, it should be an error)
+3. This project has a heavy focus on memory manipulation at all stages. Segmentation fault will be very common.
+4. Linking structs without proper planning will often cause memory leaks. Plan your structs ahead of time, especially if they involve arrays!
+5. Approximately 70% of the time will be spent on just handling data from reading the map. Do not be discouraged if you spend most of your time just fixing map reading, it is expected!
+6. [itch.io](https://itch.io/game-assets) is a good platform for sourcing free assets
+7. Have fun :)
