@@ -1,5 +1,5 @@
 ## so_long
-![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)
+![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)  
 and thanks for the fish(???)
 
 #### Compiling
