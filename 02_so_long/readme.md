@@ -1,6 +1,6 @@
 # Introduction to 42's so_long
+and thanks for the fish(???)  
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)  
-and thanks for the fish(???)
 
 #### Mandatory features
 - WASD to move the player
