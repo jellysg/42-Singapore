@@ -146,7 +146,7 @@ int main(void)
 	data.win_ptr = mlx_new_window(data.mlx_ptr, 300, 300, "test");
  
 	// Key Hook - when a key is pressed, it will call on_keypress
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &on_keypress, data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &on_keypress, &data);
  
 	// Destroy Hook - when the window is closed, it will call on_destroy
 	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
