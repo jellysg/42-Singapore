@@ -7,6 +7,7 @@ and thanks for the fish(???)
 - Should not be able to move into walls
 - View has to be 2D (top-down or profile)
 - Game doesn't have to be in real-time
+- **There should be a valid path from Player to all collectibles and the exit**
 - Collect all coins before escaping  
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img3.gif)  
 
@@ -104,3 +105,61 @@ int main(void)
 	return (0);
 }
 ```
+
+# Hooks and Loops:
+- Hooks are important for MLX as it allows the window to receive and process certain user-inputs like keypress, mouse-click, etc.  
+- Loops will essentially "hold on" to the window and listen for any previously defined hooks.
+
+### Here is a modified independant snippet of my source code:
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include "mlx/mlx.h"
+#include <X11/X.h>
+#include <X11/keysym.h>
+ 
+typedef struct s_data
+{
+	void *mlx_ptr;
+	void *win_ptr;
+} t_data;
+ 
+int on_destroy(t_data *data)
+{
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
+	exit(0);
+	return (0);
+}
+ 
+int on_keypress(int keysym, t_data *data)
+{
+    // Casted (void) as we know it is declared but intentionally not in use
+	(void)data;
+	printf("Pressed key: %d\\n", keysym);
+	return (0);
+}
+ 
+int main(void)
+{
+	t_data data;
+ 
+	data.mlx_ptr = mlx_init();
+	data.win_ptr = mlx_new_window(data.mlx_ptr, 300, 300, "test");
+ 
+	// Key Hook
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &on_keypress, data);
+ 
+	// Destroy Hook
+	mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &data);
+ 
+	// Loop the above hooks
+	mlx_loop(data.mlx_ptr);
+	return (0);
+}
+```
+What happens is the window will wait for the user to input keypresses or close the window.  
+When a key is pressed, it will print the pressed key in the terminal.  
+When window is closed, it will carry out the function on_destroy.  
+> KeyPress and DestroyNotify are X11 events, accessible via importing the X11 headers.
