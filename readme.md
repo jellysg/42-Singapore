@@ -1,4 +1,8 @@
-# 42 Singapore - Common Core
+# Piscine
+### July-Aug 2023
+- [Piscine](https://github.com/jellysg/piscine-42-sg-july2023) (Level 6.71)
+
+# Common Core
 ### Level 00
 - [**libft**](https://github.com/jellysg/libft) (125/100)
 
