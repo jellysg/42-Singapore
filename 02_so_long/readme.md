@@ -169,4 +169,4 @@ What happens is the window will wait for the user to input keypresses or close t
 4. Linking structs without proper planning will often cause memory leaks. Plan your structs ahead of time, especially if they involve arrays!
 5. Approximately 70% of the time will be spent on just handling data from reading the map. Do not be discouraged if you spend most of your time just fixing map reading, it is expected!
 6. [itch.io](https://itch.io/game-assets) is a good platform for sourcing free assets
-7. Blindly copy-pasting will only cause you more harm in the future. This project teaches you memory manipulation across multiple platforms, you will definitely be doing a lot of those in the next circle. Do not waste this fun learning opportunity over "an easy way out" ;)
+7. Blindly copy-pasting will only cause you more harm in the future. This project teaches you memory manipulation across multiple platforms, you will definitely be doing a lot of those in the next circle. Do not waste this fun learning opportunity over "an easy way out", you only lose out if you stop learning :D
