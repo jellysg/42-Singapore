@@ -85,7 +85,7 @@ The following have to be called **in the same order** or there will be memory le
 > Frees mlx.  
 > (Note: This frees the mlx functions but you still have to free your own mlx pointer!)
 
-# Here is an example for creating the window:
+# Here is an example for creating a window using MLX:
 ```
 #include <stdlib.h>
 #include "mlx/mlx.h"
@@ -97,7 +97,7 @@ int main(void)
  
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 300, 300, "test");
-    sleep(5); // 5 second sleep before closing the window
+	sleep(5); // 5 second sleep before closing the window
 	mlx_destroy_window(mlx_ptr, win_ptr);
 	mlx_destroy_display(mlx_ptr);
 	free(mlx_ptr);
