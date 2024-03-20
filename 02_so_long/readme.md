@@ -64,24 +64,24 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 # Core MLX functions for so_long:
 - mlx_init  
-<sup>Initializes the mlx library before anything else.</sup>
+> <sup>Initializes the mlx library before anything else.</sup>
 - mlx_new_window  
-<sup>Creates a new window instance.</sup>
+> <sup>Creates a new window instance.</sup>
 - mlx_hook  
-<sup>"Hooks" or registers events onto the window or mlx pointer.</sup>
+> <sup>"Hooks" or registers events onto the window or mlx pointer.</sup>
 - mlx_loop  
-<sup>Loops across the mlx pointer, registering the hooks in the same order they are called.</sup>
+> <sup>Loops across the mlx pointer, registering the hooks in the same order they are called.</sup>
 - mlx_xpm_file_to_image  
-<sup>Converts XPM to a viewable image on an mlx pointer.</sup>
+> <sup>Converts XPM to a viewable image on an mlx pointer.</sup>
 - mlx_put_image_to_window  
-<sup>Puts... image.. to window.. I don't know how else to explain this.</sup>  
+> <sup>Puts... image.. to window.. I don't know how else to explain this.</sup>  
   
 The following have to be called **in the same order** or there will be memory leaks:  
 - mlx_destroy_image  
-<sup>Frees image stored in 'mlx_xpm_file_to_image' pointers.
+> <sup>Frees image stored in 'mlx_xpm_file_to_image' pointers.</sup>
 - mlx_destroy_window  
-<sup>Frees the window instance.
+> <sup>Frees the window instance.</sup>
 - mlx_destroy_display  
-<sup>Frees mlx.  
-(Note: This frees the mlx functions but you still have to free your own mlx pointer!)
+> <sup>Frees mlx.  
+> (Note: This frees the mlx functions but you still have to free your own mlx pointer!)</sup>
 
