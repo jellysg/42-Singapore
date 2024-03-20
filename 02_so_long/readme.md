@@ -1,4 +1,4 @@
-## so_long  
+## Introduction to 42's so_long
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)  
 and thanks for the fish(???)
 
@@ -27,4 +27,33 @@ make
 To test the game, run the following:
 ```
 ./so_long ./maps/(map name).ber
+```
+
+## Tutorial: Getting started on so_long
+### Disclaimer before starting
+My structs are not optimized. Due to unoptimized linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
+For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.
+
+### Short introduction to MiniLibX
+[MiniLibX (MLX)](https://harm-smits.github.io/42docs/libs/minilibx) is a beginner-friendly API for C, used mainly for a window system called [X11](https://tronche.com/gui/x/xlib/).  
+
+### Installing MLX
+Install MLX by either downloading it directly from the project page or this command:
+```
+git clone https://github.com/42Paris/minilibx-linux.git mlx
+```
+
+### Dependencies
+MLX (and X11 itself) depends on certain packages to carry out some functions. They can be installed with the following command:
+```
+sudo apt-get install gcc make xorg libxext-dev libbsd-dev
+```
+
+### Makefile additions
+These are some of the additions to your Makefile to ensure the X11 and MLX files are accessible:
+```
+...
+INCLUDES = -I/usr/include -Imlx
+MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+...
 ```
