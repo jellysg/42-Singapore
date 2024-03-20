@@ -33,7 +33,7 @@ To test the game, run the following:
 
 # Tutorial: Getting started on so_long
 #### Disclaimer:
-My structs are not optimized. Due to unoptimized linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
+Due to unoptimized struct linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
 For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.  
   
 ## Short introduction to MiniLibX:
