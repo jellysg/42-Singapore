@@ -2,7 +2,7 @@
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img1.gif)  
 and thanks for the fish(???)
 
-### Mandatory features
+#### Mandatory features
 - WASD to move the player
 - Should not be able to move into walls
 - View has to be 2D (top-down or profile)
@@ -10,14 +10,14 @@ and thanks for the fish(???)
 - Collect all coins before escaping  
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img3.gif)  
 
-### Bonus features
+#### Bonus features
 - Lose upon touching an enemy patrol
 - Sprites have animations
 - Movement count is shown directly on screen  
 ![](https://github.com/jellysg/core/blob/main/02_so_long/img/img2.gif)  
 
 
-### Compiling
+#### Compiling
 
 After cloning, make sure you are in ./core/02_so_long/ directory, then make:
 ```
@@ -30,17 +30,14 @@ To test the game, run the following:
 ```
   
 
-
-
 # Tutorial: Getting started on so_long
-### Disclaimer:
+#### Disclaimer:
 My structs are not optimized. Due to unoptimized linking, I have to make pointless frees before malloc. This is not only unnecessary line bloat, but also makes it harder to understand when reviewing the source code.  
 For this I apologize for the messy linking and extra frees here and there, they were mostly a band-aid to passing valgrind and speed up the submission overall. It could definitely be done better and will revisit this when I have more time in the future.  
   
 **This project has heavy focus on memory manipulation.**
   
 
-  
 ## Short introduction to MiniLibX:
 [MiniLibX (MLX)](https://harm-smits.github.io/42docs/libs/minilibx) is a beginner-friendly API for C, used mainly for a window system called [X11](https://tronche.com/gui/x/xlib/).  
 
@@ -65,7 +62,7 @@ MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 ...
 ```
 
-## Core MLX functions for so_long:
+# Core MLX functions for so_long:
 - mlx_init  
 Initializes the mlx library before anything else.
 - mlx_new_window  
