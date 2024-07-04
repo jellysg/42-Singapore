@@ -13,4 +13,5 @@
 
 ### Level 02
 - [**so_long**](https://github.com/jellysg/so_long) (125/100)
-- [**push_swap**](https://github.com/jellysg/push_swap) (?/100) 
+- [**push_swap**](https://github.com/jellysg/push_swap) (84/100)
+- [**pipex**](https://github.com/jellysg/pipex) (?/100) 
